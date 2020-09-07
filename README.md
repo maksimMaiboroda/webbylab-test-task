@@ -29,20 +29,19 @@ Stars: Audrey Hepburn, Cary Grant, Walter Matthau, James Coburn, George Kennedy
 ```
 $ git@github.com:maksimMaiboroda/webbylab-test-task.git
 ```
-* Далее выполните команды для установки зависемостей
+* Далее выполните команды для установки зависемостей сервера:
 ```
 $ npm install
+```
+* После этого перейдите в папку клиекта и выполните там установку зависимостей клиента:
+```
+$ cd client
+$ npm install
+```
+* Далее нужно выйти в корневую папку приложения и выполнить команду для сборки приложения 
+в режиме разработки:
+```
+$ cd ..
+$ npm run dev
+```
 
-$npm run client:install
-```
-* Для запуска developer сборики, выполните команду
-```
-$ npm run build
-
-```
-
-* Для production сборики, выполните команду
-```
-$ npm run client:build
-
-```
