@@ -17,10 +17,16 @@ router.get("/", async (req, res) => {
 // /api/films/upload
 
 router.post("/upload", async (req, res, next) => {
-  let filedata = await req.file;
-  console.log(filedata.path);
+  let fileData = await req.file;
+  console.log(fileData);
+  console.log(fileData.originalname.slice(-4));
+  if (fileData.originalname.slice(-4) !== ".txt") {
+    res.send("Неверный формат файла");
+  } else if (fileData.size == 0) {
+    res.send("Ошибка при загрузке файла, файл пустой!");
+  }
 
-  fs.readFile(filedata.path, "utf8", function (error, data) {
+  fs.readFile(fileData.path, "utf8", function (error, data) {
     if (error) throw error;
 
     const text = data
@@ -66,7 +72,7 @@ router.post("/upload", async (req, res, next) => {
     });
   });
 
-  if (!filedata) res.send("Ошибка при загрузке файла");
+  if (!fileData) res.send("Ошибка при загрузке файла");
   else res.send("Файл загружен");
 });
 

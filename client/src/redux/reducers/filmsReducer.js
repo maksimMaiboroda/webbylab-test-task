@@ -4,7 +4,6 @@ let initialState = {
   films: [],
   filmsLoaded: true,
 };
-
 const filmsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_FILMS: {

@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import Header from "./Header";
-import { setQuery, setQueryTitle, setQueryStars } from "../../redux/actions/actionsFilerReducer";
+import {
+  setQuery,
+  setQueryTitle,
+  setQueryStars,
+} from "../../redux/actions/actionsFilterReducer";
 
 let mapStateToProps = (state) => {
   return {
@@ -8,4 +12,8 @@ let mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {  setQuery, setQueryTitle, setQueryStars  })(Header);
+export default connect(mapStateToProps, {
+  setQuery,
+  setQueryTitle,
+  setQueryStars,
+})(Header);

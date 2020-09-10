@@ -2,12 +2,13 @@ import { filmsAPI } from "../../api/api";
 import { SET_FILMS, FILMS_LOADED } from "../types/types";
 
 export const setFilms = (films) => ({ type: SET_FILMS, payload: films });
+
 export const filmsLoaded = (statusLoaded) => ({
   type: FILMS_LOADED,
   payload: statusLoaded,
 });
 
-export const getFilmsList = () => {
+export const getFilmsList = (state) => {
   return async (dispatch) => {
     dispatch(filmsLoaded(true));
     let data = await filmsAPI.getFilms();
@@ -30,6 +31,6 @@ export const filmDelete = (id) => {
 
 // saveFile
 
-/* export const saveTextFile = (fileData) => async (dispatch) => {
-  const response = await filmsAPI.saveFile(fileData);
+/* export const saveTextFile = (formElem) => async (dispatch) => {
+  const response = await filmsAPI.saveFile(formElem);
 }; */

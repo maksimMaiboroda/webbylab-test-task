@@ -11,20 +11,18 @@ export const filmsAPI = {
   getFilms() {
     return instanse.get(`/`).then((response) => response.data);
   },
-/* 
-  saveFile(fileData) {
-    
+
+  /* saveFile(formElem) {
+    debugger;
     let formData = new FormData();
-    let imagefile = document.querySelector('#file');
-    formData.append("file", imagefile.files[0]);
+
+    formData.append("file", formElem.files[0]);
 
     let config = { header: { "content-type": "multypart/form-data" } };
 
-
-    console.log(imagefile.files[0]);
     instanse.post("/upload", formData, config);
-  },
- */
+  }, */
+
   addFilm(film) {
     return instanse.post(`/addFilm`, film);
   },

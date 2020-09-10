@@ -1,9 +1,11 @@
 import AddFilm from "./AddFilm";
 import { connect } from "react-redux";
-import { addFilm } from "../../redux/actions/actionsFilmsReducer";
+import { addFilm, getFilmsList } from "../../redux/actions/actionsFilmsReducer";
 
-let mapStateToProps = (state) => {
-  return {};
+let mapStateToProps = ({filmsPage}) => {
+  return {
+    films: filmsPage.films
+  };
 };
 
-export default connect(mapStateToProps, { addFilm })(AddFilm);
+export default connect(mapStateToProps, { addFilm , getFilmsList})(AddFilm);

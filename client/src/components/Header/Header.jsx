@@ -5,6 +5,11 @@ import { Navbar, Form, FormControl, Button } from "react-bootstrap";
 import clasess from "./Header.module.scss";
 
 const Header = ({ searchQuery, setQuery, setQueryTitle, setQueryStars }) => {
+  const goToFilmsPage = () => {
+    setQueryTitle("");
+    setQuery("");
+  };
+
   return (
     <div>
       <Navbar className={clasess.headerWrapper} bg="light" expand="lg">
@@ -15,7 +20,11 @@ const Header = ({ searchQuery, setQuery, setQueryTitle, setQueryStars }) => {
           id="basic-navbar-nav"
         >
           <div className={clasess.headerElements}>
-            <NavLink className={clasess.headerRoute} to="/film">
+            <NavLink
+              onClick={goToFilmsPage}
+              className={clasess.headerRoute}
+              to="/film"
+            >
               Films
             </NavLink>
 

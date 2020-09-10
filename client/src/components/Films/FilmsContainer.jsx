@@ -1,13 +1,26 @@
 import { connect } from "react-redux";
 import Films from "./Films";
-import { getFilmsList } from "../../redux/actions/actionsFilmsReducer";
-import { setFilter } from "../../redux/actions/actionsFilerReducer";
+import {
+  getFilmsList,
+  filmDelete,
+} from "../../redux/actions/actionsFilmsReducer";
+import {
+  setFilter,
+  setQuery,
+  setQueryTitle,
+} from "../../redux/actions/actionsFilterReducer";
 import orderBy from "lodash/orderBy";
+import FilmsPagination from "./FilmsPagination";
 
 const sortBy = (films, filterBy) => {
+  films.forEach(
+    (film) =>
+      (film.sortTitle = film.title.replace(/\s+/g, "").trim().toLowerCase())
+  );
+
   switch (filterBy) {
     case "title":
-      return orderBy(films, ["title"], ["asc"]);
+      return orderBy(films, ["sortTitle"], ["asc"]);
 
     case "releaseYear":
       return orderBy(films, ["releaseYear"], ["asc"]);
@@ -30,13 +43,18 @@ const filterFilmsStars = (films, searchQueryStars) => {
 };
 
 const searchFilms = (films, filterBy, searchQueryTitle, searchQueryStars) => {
-  return sortBy(
+  const filterFilms = sortBy(
     filterFilmsTitle(
       filterFilmsStars(films, searchQueryStars),
       searchQueryTitle
     ),
     filterBy
   );
+  if (filterFilms.length === 0) {
+    return [];
+  }
+
+  return filterFilms;
 };
 
 let mapStateToProps = ({ filmsPage, filter }) => {
@@ -51,7 +69,15 @@ let mapStateToProps = ({ filmsPage, filter }) => {
       ),
     filmsLoaded: filmsPage.filmsLoaded,
     filterType: filter.filterType,
+    searchQuery: filter.searchQuery,
+    countFilmsList: filmsPage.countFilmsList,
   };
 };
 
-export default connect(mapStateToProps, { getFilmsList, setFilter })(Films);
+export default connect(mapStateToProps, {
+  getFilmsList,
+  setFilter,
+  filmDelete,
+  setQuery,
+  setQueryTitle,
+})(FilmsPagination);

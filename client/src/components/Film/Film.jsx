@@ -1,21 +1,35 @@
 import React from "react";
 
-import clasess from "./Film.module.scss"
+import clasess from "./Film.module.scss";
 import { Accordion, Card, Button } from "react-bootstrap";
 
-const Films = ({ film, filmDelete, getFilmsList }) => {
-
-  const setDelFilm = (id) =>{
+const Films = ({
+  film,
+  filmDelete,
+  getFilmsList,
+  deleteFilm,
+  setModalDeleteFilm,
+}) => {
+  const setDelFilm = (id) => {
     filmDelete(id);
-    getFilmsList()
-  }
+    getFilmsList();
+  };
 
   return (
     <>
       <Card className={clasess.filmItem}>
-        <Accordion.Toggle className={clasess.blockTitle} as={Card.Header} eventKey={film._id}>
+        <Accordion.Toggle
+          className={clasess.blockTitle}
+          as={Card.Header}
+          eventKey={film._id}
+        >
           {film.title}
-          <Button onClick={setDelFilm.bind(this, film._id)} variant="outline-danger">Delete</Button>
+          <Button
+            onClick={setModalDeleteFilm.bind(this,  film._id)}
+            variant="outline-danger"
+          >
+            Delete
+          </Button>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={film._id}>
           <Card.Body>
