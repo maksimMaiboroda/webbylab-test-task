@@ -5,13 +5,7 @@ import Films from "./Films";
 import Pagination from "../common/Pagination/Pagination";
 import classes from "./Films.module.scss";
 
-const FilmsPagination = ({
-  filmsLoaded,
-  searchQuery,
-  getFilmsList,
-  films,
-  ...props
-}) => {
+const FilmsPagination = ({filmsLoaded, searchQuery, getFilmsList, films, ...props }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filmsPerPage] = useState(10);
 
@@ -19,6 +13,7 @@ const FilmsPagination = ({
     getFilmsList();
   }, []);
 
+  
   // Get current page
   const indexOfLastFilm = currentPage * filmsPerPage;
   const indexOfFirstFilm = indexOfLastFilm - filmsPerPage;
@@ -31,16 +26,17 @@ const FilmsPagination = ({
 
   return (
     <>
-      <Films {...props} films={currentFilms} getFilmsList={getFilmsList} />
-      <div className={classes.paginationWrap}>
-        {!filmsLoaded ? (
-          <Pagination
+      <Films  className={classes.filmsContent} {...props} films={currentFilms} getFilmsList={getFilmsList} />
+      <div  className={classes.paginationWrap}>
+      {!filmsLoaded ? (
+          <Pagination 
             filmsPerPage={filmsPerPage}
             totalFilms={films.length}
             paginate={paginate}
           />
         ) : null}
       </div>
+      
     </>
   );
 };

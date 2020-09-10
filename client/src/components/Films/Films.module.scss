@@ -45,6 +45,7 @@
   right: 0;
   left: 0;
   bottom: 0;
+  z-index: 100;
 }
 
 .modalContent {
@@ -53,9 +54,11 @@
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24), 0 9px 13px 0 rgba(0, 0, 0, 0.19);
 }
 
+
+
 .paginationWrap {
-  display: flex;
+    display: flex;
   flex-direction: column;
-  justify-content: center;
+margin-top: auto;
   align-items: center;
 }

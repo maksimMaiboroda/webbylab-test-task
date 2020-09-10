@@ -14,7 +14,12 @@ const Films = ({
   setQueryTitle,
   setQuery,
   filmDelete,
+  
 }) => {
+  useEffect(() => {
+    getFilmsList();
+  }, []);
+
   useEffect(() => {
     if (films.length === 0) {
       return setModalNoFilm(false);

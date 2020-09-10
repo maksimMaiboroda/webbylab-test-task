@@ -9,24 +9,36 @@ export const filmsLoaded = (statusLoaded) => ({
 });
 
 export const getFilmsList = (state) => {
-  return async (dispatch) => {
-    dispatch(filmsLoaded(true));
-    let data = await filmsAPI.getFilms();
-    dispatch(setFilms(data));
-    dispatch(filmsLoaded(false));
-  };
+  try {
+    return async (dispatch) => {
+      dispatch(filmsLoaded(true));
+      let data = await filmsAPI.getFilms();
+      dispatch(setFilms(data));
+      dispatch(filmsLoaded(false));
+    };
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+  }
 };
 
 export const addFilm = (film) => {
-  return async (dispatch) => {
-    await filmsAPI.addFilm(film);
-  };
+  try {
+    return async (dispatch) => {
+      await filmsAPI.addFilm(film);
+    };
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+  }
 };
 
 export const filmDelete = (id) => {
-  return async (dispatch) => {
-    await filmsAPI.filmDel(id);
-  };
+  try {
+    return async (dispatch) => {
+      await filmsAPI.filmDel(id);
+    };
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+  }
 };
 
 // saveFile
